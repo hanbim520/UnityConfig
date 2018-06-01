@@ -1,4 +1,9 @@
-﻿using System.Collections;
+﻿/// <summary> 
+/// SaveConfig
+/// 作者：NavyZhang 
+/// 日期：2018-06-01 
+/// </summary> 
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using LitJson;
@@ -10,9 +15,9 @@ namespace SDGame
     public class SaveConfig : Singleton<SaveConfig>
     {
         private static readonly string FILE_NAME = "GameConfig.txt";
-       
+
         // Use this for initialization
-        public override void Init() 
+        public override void Init()
         {
             base.Init();
         }
@@ -31,7 +36,7 @@ namespace SDGame
 
 
 
-        private bool CheckFileExists(string path,string name)
+        private bool CheckFileExists(string path, string name)
         {
             if (!File.Exists(path + "/" + name))
             {
@@ -48,14 +53,15 @@ namespace SDGame
                 {
                     string file = LoadFile(Application.persistentDataPath, FILE_NAME);
                     jsonConfig = JsonMapper.ToObject<JsonConfig>(file);
-                }else
+                }
+                else
                 {
                     jsonConfig = new JsonConfig();
                 }
-               
+
                 CheckNull(jsonConfig);
                 jsonConfig.SetStringListData(key, value);
-                DeleteFile(Application.persistentDataPath , FILE_NAME);
+                DeleteFile(Application.persistentDataPath, FILE_NAME);
                 string json_data = JsonMapper.ToJson(jsonConfig);
                 CreateFile(Application.persistentDataPath, FILE_NAME, json_data);
             }
@@ -63,7 +69,7 @@ namespace SDGame
             {
                 UnityEngine.Debug.LogError(ex.ToString());
             }
-           
+
         }
 
         public List<string> GetStringListData(string key)
@@ -77,7 +83,7 @@ namespace SDGame
             return new List<string>();
         }
 
-        public void RemoveStringListDataByKey(string key )
+        public void RemoveStringListDataByKey(string key)
         {
             if (CheckFileExists(Application.persistentDataPath, FILE_NAME))
             {
@@ -91,7 +97,7 @@ namespace SDGame
 
         }
 
-        public void RemoveStringListData(string key,string value)
+        public void RemoveStringListData(string key, string value)
         {
             if (CheckFileExists(Application.persistentDataPath, FILE_NAME))
             {
@@ -129,7 +135,7 @@ namespace SDGame
             {
                 UnityEngine.Debug.LogError(ex.ToString());
             }
-            
+
         }
         public void RemoveIntData(string key)
         {
@@ -152,11 +158,12 @@ namespace SDGame
                 string file = LoadFile(Application.persistentDataPath, FILE_NAME);
                 JsonConfig jsondata = JsonMapper.ToObject<JsonConfig>(file);
                 return jsondata.GetIntData(key);
-            }else
+            }
+            else
             {
                 return 0;
             }
-               
+
         }
         public void SetBoolData(string key, bool value)
         {
@@ -191,11 +198,12 @@ namespace SDGame
                 string file = LoadFile(Application.persistentDataPath, FILE_NAME);
                 JsonConfig jsondata = JsonMapper.ToObject<JsonConfig>(file);
                 return jsondata.GetBoolData(key);
-            }else
+            }
+            else
             {
                 return false;
             }
-                
+
         }
         public void RemoveBoolData(string key)
         {
@@ -242,11 +250,12 @@ namespace SDGame
                 string file = LoadFile(Application.persistentDataPath, FILE_NAME);
                 JsonConfig jsondata = JsonMapper.ToObject<JsonConfig>(file);
                 return jsondata.GetStringData(key);
-            }else
+            }
+            else
             {
                 return "";
             }
-                
+
         }
 
         public void RemoveStringData(string key)
@@ -261,7 +270,7 @@ namespace SDGame
                 CreateFile(Application.persistentDataPath, FILE_NAME, json_data);
             }
         }
-        private  void CreateFile(string path, string name, string info)
+        private void CreateFile(string path, string name, string info)
         {
             StreamWriter sw;
             FileInfo t = new FileInfo(path + "/" + name);
@@ -301,7 +310,7 @@ namespace SDGame
             File.Delete(path + "/" + name);
 
         }
-      
+
     }
 
 }

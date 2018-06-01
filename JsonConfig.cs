@@ -1,4 +1,9 @@
-﻿using System.Collections;
+﻿/// <summary> 
+/// JsonConfig
+/// 作者：NavyZhang 
+/// 日期：2018-06-01 
+/// </summary> 
+using System.Collections;
 using System.Collections.Generic;
 
 namespace SDGame
@@ -46,7 +51,7 @@ namespace SDGame
                 _configStringListDic.Remove(key);
         }
 
-        public void RemoveStringListData(string key,string value)
+        public void RemoveStringListData(string key, string value)
         {
             if (!_configStringListDic.ContainsKey(key))
                 return;
