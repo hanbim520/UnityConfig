@@ -1,0 +1,3 @@
+1.需要LitJson库
+2.非unity版本实现的API比较少，而且是存储于本地，如果需要可以自行添加
+3.Unity版本支持原有PlayerPrefs所有，并且模拟实现bool，增加list、dictionary和自定义结构类型。
